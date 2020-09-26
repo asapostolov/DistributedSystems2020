@@ -1,0 +1,30 @@
+﻿
+
+
+@model WeatherModel
+
+<div style="margin-top:40px">
+    @using ( Html.BeginForm( "Weather", "Home", FormMethod.Get ) ) {
+        @Html.TextBoxFor(x=>x.City, new { @class="form-control" } )
+
+        <button type="submit" class="btn btn-success">Check Weather</button>
+    }
+
+    @if ( Model.Weather != null ) {
+<div class="row">
+    <div class="col-md-3">
+        Name: @Model.Weather.name
+    </div>
+    <div class="col-md-3">
+        Description: @Model.Weather.weather[0].description
+    </div>
+    <div class="col-md-3">
+        Temperature: @Model.Weather.main.temp° C
+    </div>
+    <div class="col-md-3">
+        Feels Like: @Model.Weather.main.feels_like° C
+    </div>
+</div>
+    }
+
+</div>

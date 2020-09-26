@@ -1,0 +1,33 @@
+﻿
+
+@model DistributedSystems2020.Models.IndexViewModel
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+
+<div class="jumbotron">
+    @using ( Html.BeginForm( "Index", "Home", FormMethod.Get ) ) {
+        @Html.TextBox( "id", "", new { @class = "form-control" } )
+        <input type="submit" class="btn btn-success" value="Изпрати" />
+    }
+
+    @if ( Model.BgToll != null ) {
+        if( Model.BgToll.ok == true ) {
+            <h4>status OK: @Model.BgToll.ok</h4>
+        
+            <h3>License Plate: @Model.BgToll.vignette.licensePlateNumber</h3>
+            <h3>Vinette Number: @Model.BgToll.vignette.vignetteNumber</h3>
+            <h3>Veichle Class: @Model.BgToll.vignette.vehicleClass</h3>
+            <h3>Valid Until: @Model.BgToll.vignette.validityDateToFormated</h3>
+        } else {
+            <div class="alert alert-warning">
+                Няма намерена валидна винетка!
+            </div>
+        }
+    }
+
+    <h1>@Model.Title</h1>
+    
+</div>
